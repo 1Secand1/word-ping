@@ -1,61 +1,107 @@
-<script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { api } from "@/services/api";
-
-import { useI18n } from "@/composables/useI18nLight";
-      
-const { t, locales, locale, setLocale } = useI18n();
-
-function changeLocale() {
-  setLocale(locales.find(l => l.code != locale.value.code).code);
-}
-
-interface IOption {
-  name: string
-  value: string
-}
-
-const apiData = ref();
-
-onMounted(async () => {
-  apiData.value = await api.utils.testRest();
-});
-
-const options: IOption[] = [{name: "Project name", value: "word-ping"},{name: "Splash screen", value: "false"},{name: "PWA", value: "true"},{name: "Open graph meta tags", value: "false"},{name: "Google Analytics", value: "false"},{name: "Github Actions Workflow", value: "false"},{name: "App Layout", value: "OneColumnLayout"},{name: "Navigation drawer", value: "TouchSlideoutDrawer"},{name: "Navbar", value: "MantineSimpleNavbar"},{name: "Header", value: "MantineSimpleHeader"},{name: "Footer", value: "SimpleFooter"},{name: "undefined", value: "true"},{name: "REST API adapter", value: "true"},{name: "JSON-RPC", value: "false"}];
-</script>
-
 <template>
-  <div>
-    <h2>Congratulations with scaffolding your vue webapp!</h2>
-    <h3 v-if="options.length">
-      Selected options:
-    </h3>
-    <ul>
+  <main class="main">
+    <div class="qwe">
+      <div class="">
+        <p>  Слово на англиском: {{ currentPairWord.source }}</p>
+        <p> Перевод: {{ currentPairWord.translation }}</p>
+        <button @click="toggler">
+          {{ switchPairWordIntervalId ? 'Остоновить' : 'Запустить' }}
+        </button>
+      </div>
+    </div>
+    <ul class="word-list">
+      <li>
+        <span>RU</span>
+        <span>ENG</span>
+      </li>
       <li
-        v-for="option in options"
-        :key="option.name"
-        :class="{ dimmed: option.value === 'false' }"
+        v-for="{ source, translation } in vocabulary"
+        :key="`${source}-${translation}`"
       >
-        <span class="name">{{ option.name }}</span>
-        <span class="value">{{ option.value }}</span>
+        <span>{{ source }}</span>
+        <span>{{ translation }}</span>
       </li>
     </ul>
-<hr />
-<h3>API data:</h3> <p>{{ apiData }}</p>
-    <div>
-      i18n test -
-      <button
-        type="button"
-        @click="changeLocale()"
-      >
-        {{ t('msg') }} ({{ locale.code }})
-      </button>
-    </div>
-  </div>
+  </main>
 </template>
 
+<script setup lang="ts">
+import { computed, ref } from "vue";
+
+const vocabulary = [
+  { source: "shy", translation: "застенчивый" },
+  { source: "function", translation: "функция" },
+  { source: "value", translation: "значение" },
+  { source: "loop", translation: "цикл" },
+  { source: "array", translation: "массив" },
+  { source: "object", translation: "объект" },
+  { source: "string", translation: "строка" },
+  { source: "number", translation: "число" },
+  { source: "if", translation: "если" },
+  { source: "else", translation: "иначе" },
+  { source: "return", translation: "возврат" },
+  { source: "event", translation: "событие" },
+  { source: "handler", translation: "обработчик" },
+];
+
+const currentPairWordIndex = ref(0);
+const currentPairWord = computed(() => vocabulary[currentPairWordIndex.value]);
+const switchPairWordIntervalId = ref<number | null>(null);
+
+async function switchPairWord() {
+  await speakWord(currentPairWord.value.source);
+
+  currentPairWordIndex.value++;
+
+  if (vocabulary.length <= currentPairWordIndex.value) {
+    currentPairWordIndex.value = 0;
+  }
+}
+
+function speakWord(word: string, lang: "en-US" | "ru-RU" = "en-US") {
+  return new Promise<void>((resolve, reject) => {
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = lang;
+
+    utterance.onend = () => {
+      resolve();
+    };
+
+    utterance.onerror = (event) => {
+      reject(event.error);
+    };
+
+    speechSynthesis.speak(utterance);
+  });
+}
+
+async function toggler() {
+  if (switchPairWordIntervalId.value) {
+    clearInterval(switchPairWordIntervalId.value);
+    switchPairWordIntervalId.value = null;
+    return;
+  }
+
+  switchPairWord();
+  switchPairWordIntervalId.value = setInterval(switchPairWord, 2000);
+  console.log(switchPairWordIntervalId.value);
+}
+</script>
+
 <style scoped>
-ul {
+.qwe {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.main{
+  display: flex;
+  height: 100%;
+}
+
+.word-list {
+  width: 50%;
   color: var(--vwa-c-text-2);
   border: 1px solid var(--vwa-c-divider);
   margin-bottom: 2em;
@@ -73,7 +119,8 @@ ul {
     }
   }
 }
-button {
-  padding: 0.3em 1em;
+
+button{
+  width: 100%;
 }
 </style>
