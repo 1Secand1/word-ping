@@ -34,11 +34,10 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.23.2",
-    "@types/node": "^20.14.11",
     "@vitejs/plugin-vue": "^5.0.5",
-    "eslint": "^9.7.0",
+    "eslint": "^9.32.0",
     "typescript": "^5.5.4",
-    "vite": "^5.3.4",
+    "vite": "^6.3.5",
     "vite-plugin-html-injection": "^1.4.2"
   }
 }
