@@ -1,6 +1,3 @@
-<script setup lang="ts">
-</script>
-
 <template>
   <main class="content-pane">
     <!-- <Transition>
@@ -17,8 +14,12 @@
   </main>
 </template>
 
+<script setup lang="ts">
+</script>
+
 <style scoped>
 .content-pane {
+  width: 100%;
   padding: 1em 2em;
 }
 .v-enter-active,

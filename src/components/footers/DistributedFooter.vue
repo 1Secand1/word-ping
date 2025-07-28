@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <footer class="footer">
     <div class="footer-left">
@@ -42,6 +40,8 @@
     </div>
   </footer>
 </template>
+
+<script setup lang="ts"></script>
 
 <style scoped>
 .footer {

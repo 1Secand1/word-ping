@@ -1,25 +1,3 @@
-<script setup lang="ts">
-import BaseIcon from "@/components/ui/BaseIcon.vue";
-import { useAppConfig } from "@/composables/useAppConfig";
-
-const { closeDrawer } = useAppConfig();
-
-function onLinkClick(event, navigate) {
-  closeDrawer();
-  navigate(event);
-}
-
-const links = [
-  { name: "home", label: "Home", icon: "home" },
-  { name: "about", label: "About", icon: "about" },
-  { name: "contacts", label: "Contact us", icon: "contact-us" },
-];
-const footerLinks = [
-  { name: "home", label: "Change account", icon: "change-account" },
-  { name: "home", label: "Logout", icon: "logout" },
-];
-</script>
-
 <template>
   <nav class="navbar">
     <div class="main">
@@ -48,6 +26,28 @@ const footerLinks = [
     </div>
   </nav>
 </template>
+
+<script setup lang="ts">
+import BaseIcon from "@/components/ui/BaseIcon.vue";
+import { useAppConfig } from "@/composables/useAppConfig";
+
+const { closeDrawer } = useAppConfig();
+
+function onLinkClick(event, navigate) {
+  closeDrawer();
+  navigate(event);
+}
+
+const links = [
+  { name: "home", label: "Home", icon: "home" },
+  { name: "about", label: "About", icon: "about" },
+  { name: "contacts", label: "Contact us", icon: "contact-us" },
+];
+const footerLinks = [
+  { name: "home", label: "Change account", icon: "change-account" },
+  { name: "home", label: "Logout", icon: "logout" },
+];
+</script>
 
 <style scoped>
 .navbar {
