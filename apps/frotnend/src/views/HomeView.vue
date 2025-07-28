@@ -49,13 +49,12 @@ const currentPairWord = computed(() => vocabulary[currentPairWordIndex.value]);
 const switchPairWordIntervalId = ref<number | null>(null);
 
 async function switchPairWord() {
-  await speakWord(currentPairWord.value.source);
+  console.log("switchPairWord:", currentPairWord.value.source, ",", currentPairWord.value.translation, currentPairWordIndex.value);
+
+  await speakWord(currentPairWord.value.source, "en-US");
+  await speakWord(currentPairWord.value.translation, "ru-RU");
 
   currentPairWordIndex.value++;
-
-  if (vocabulary.length <= currentPairWordIndex.value) {
-    currentPairWordIndex.value = 0;
-  }
 }
 
 function speakWord(word: string, lang: "en-US" | "ru-RU" = "en-US") {
@@ -83,8 +82,8 @@ async function toggler() {
   }
 
   switchPairWord();
-  switchPairWordIntervalId.value = setInterval(switchPairWord, 2000);
-  console.log(switchPairWordIntervalId.value);
+
+  switchPairWordIntervalId.value = setInterval(switchPairWord, 60 * 1000);
 }
 </script>
 
