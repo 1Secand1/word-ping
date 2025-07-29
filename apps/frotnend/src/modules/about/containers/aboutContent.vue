@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <div>
     <h2>About this tool</h2>
@@ -42,5 +40,7 @@
     </ol>
   </div>
 </template>
+
+<script setup lang="ts"></script>
 
 <style scoped></style>

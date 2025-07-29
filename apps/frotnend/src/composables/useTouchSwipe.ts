@@ -85,7 +85,7 @@ export function useTouchSwipe(
     } else { return diffY.value > 0 ? "up" : "down"; }
   });
 
-  const listenerOptions: { passive?: boolean; capture?: boolean } = { passive: true, capture: false };
+  const listenerOptions: { passive?: boolean, capture?: boolean } = { passive: true, capture: false };
 
   const onTouchEnd = (e: TouchEvent) => {
     if (isSwiping.value) {

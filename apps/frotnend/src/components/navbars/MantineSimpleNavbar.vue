@@ -39,13 +39,11 @@ function onLinkClick(event, navigate) {
 }
 
 const links = [
-  { name: "home", label: "Home", icon: "home" },
+  { name: "wordSpeaker", label: "Home", icon: "home" },
   { name: "about", label: "About", icon: "about" },
-  { name: "contacts", label: "Contact us", icon: "contact-us" },
 ];
 const footerLinks = [
-  { name: "home", label: "Change account", icon: "change-account" },
-  { name: "home", label: "Logout", icon: "logout" },
+  { name: "wordSpeaker", label: "Logout", icon: "logout" },
 ];
 </script>
 

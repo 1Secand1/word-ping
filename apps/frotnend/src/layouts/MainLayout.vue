@@ -1,35 +1,3 @@
-<script setup lang="ts">
-import AppContentPane from "@/components/AppContentPane.vue";
-
-import AppNavigationDrawer from "@/components/drawers/TouchSlideoutDrawer.vue";
-
-// import AppNavigationDrawer from "@/components/drawers/TouchSlideoutDrawer.vue";
-
-// import AppSidebar from "@/components/navbars/MantineSimpleNavbar.vue";
-
-import AppSidebar from "@/components/navbars/MantineSimpleNavbar.vue";
-
-import AppHeader from "@/components/headers/MantineSimpleHeader.vue";
-
-// import AppHeader from "@/components/headers/MantineLayeredHeader.vue";
-
-// import AppHeader from "@/components/headers/MantineSimpleHeader.vue";
-
-// import AppFooter from "@/components/footers/RichFooter.vue";
-
-// import AppFooter from "@/components/footers/DistributedFooter.vue";
-
-import AppFooter from "@/components/footers/MantineSimpleFooter.vue";
-
-// import AppFooter from "@/components/footers/MantineRichFooter.vue";
-
-// import AppFooter from "@/components/footers/SimpleFooter.vue";
-
-import { useAppConfig } from "@/composables/useAppConfig";
-
-const { isDrawerOpen } = useAppConfig();
-</script>
-
 <template>
   <div class="app">
     <AppHeader />
@@ -45,6 +13,22 @@ const { isDrawerOpen } = useAppConfig();
     <AppFooter />
   </div>
 </template>
+
+<script setup lang="ts">
+import AppContentPane from "@/components/AppContentPane.vue";
+
+import AppNavigationDrawer from "@/components/drawers/TouchSlideoutDrawer.vue";
+
+import AppSidebar from "@/components/navbars/MantineSimpleNavbar.vue";
+
+import AppHeader from "@/components/headers/MantineSimpleHeader.vue";
+
+import AppFooter from "@/components/footers/MantineSimpleFooter.vue";
+
+import { useAppConfig } from "@/composables/useAppConfig";
+
+const { isDrawerOpen } = useAppConfig();
+</script>
 
 <style>
 .app {

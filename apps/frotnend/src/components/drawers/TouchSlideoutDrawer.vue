@@ -1,3 +1,18 @@
+<template>
+  <aside ref="touchSlideout" class="navigation-drawer" :class="{ open: isDrawerOpen }">
+    <div ref="touchSlideoutWrapper" class="touch-slideout-wrapper">
+      <div class="touch-slideout-drawer">
+        <slot :close-drawer="close" />
+      </div>
+    </div>
+  </aside>
+  <div
+    ref="overlay"
+    class="overlay"
+    :class="{ hidden: !isDrawerOpen }"
+  />
+</template>
+
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { useTouchSwipe } from "@/composables/useTouchSwipe";
@@ -175,7 +190,7 @@ function onSwipeEnd(e, direction) {
     if (isDrawerOpen.value && coordsEnd.x <= maxDrawerWidth.value) {
       if (
         (coordsStart.x > maxDrawerWidth.value
-        && coordsEnd.x < maxDrawerWidth.value - config.changeStateTrigger)
+          && coordsEnd.x < maxDrawerWidth.value - config.changeStateTrigger)
         || (coordsStart.x < maxDrawerWidth.value && coordsStart.x - coordsEnd.x > config.changeStateTrigger)
       ) {
         isDrawerOpen.value = false;
@@ -206,21 +221,6 @@ onUnmounted(() => {
   overlay.value.removeEventListener("click", overlayClick, false);
 });
 </script>
-
-<template>
-  <aside ref="touchSlideout" class="navigation-drawer" :class="{ open: isDrawerOpen }">
-    <div ref="touchSlideoutWrapper" class="touch-slideout-wrapper">
-      <div class="touch-slideout-drawer">
-        <slot :close-drawer="close" />
-      </div>
-    </div>
-  </aside>
-  <div
-    ref="overlay"
-    class="overlay"
-    :class="{ hidden: !isDrawerOpen }"
-  />
-</template>
 
 <style scoped>
 .navigation-drawer {

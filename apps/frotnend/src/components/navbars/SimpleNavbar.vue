@@ -1,3 +1,15 @@
+<template>
+  <nav>
+    <ul>
+      <li v-for="link in links" :key="link.label">
+        <router-link v-slot="{ href, navigate }" :to="{ name: link.name }" custom>
+          <a role="link" :href="href" @click="onLinkClick($event, navigate)">{{ link.label }}</a>
+        </router-link>
+      </li>
+    </ul>
+  </nav>
+</template>
+
 <script setup lang="ts">
 import { useAppConfig } from "@/composables/useAppConfig";
 
@@ -10,23 +22,10 @@ function onLinkClick(event, navigate) {
 }
 
 const links = [
-  { name: "home", label: "Home" },
+  { name: "wordSpeaker", label: "wordSpeaker" },
   { name: "about", label: "About" },
-  { name: "contacts", label: "Contact us" },
 ];
 </script>
-
-<template>
-  <nav>
-    <ul>
-      <li v-for="link in links" :key="link.label">
-        <router-link v-slot="{ href, navigate }" :to="{ name: link.name }" custom>
-          <a role="link" :href="href" @click="onLinkClick($event, navigate)">{{ link.label }}</a>
-        </router-link>
-      </li>
-    </ul>
-  </nav>
-</template>
 
 <style scoped>
 nav {

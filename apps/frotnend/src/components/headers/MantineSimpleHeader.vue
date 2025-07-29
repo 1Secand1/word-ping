@@ -1,26 +1,10 @@
-<script setup lang="ts">
-import BaseIcon from "@/components/ui/BaseIcon.vue";
-import HamburgerIcon from "@/components/ui/HamburgerIcon.vue";
-import ThemeToggle from "@/components/ui/ThemeToggle.vue";
-import { useAppConfig } from "@/composables/useAppConfig";
-
-const { isDrawerOpen } = useAppConfig();
-
-const links = [
-  { title: "Features", route: { name: "contacts" } },
-  { title: "Pricing", route: { name: "about" } },
-  { title: "Learn", route: { name: "about" } },
-  { title: "Community", route: { name: "about" } },
-];
-</script>
-
 <template>
   <header class="header">
-    <RouterLink :to="{ name: 'home' }">
+    <RouterLink :to="{ name: 'wordSpeaker' }">
       <div class="logo">
         <BaseIcon size="30" name="logo" class="icon" />
         <div class="title">
-          Acme Inc.
+          Word ping
         </div>
       </div>
     </RouterLink>
@@ -33,6 +17,21 @@ const links = [
     <HamburgerIcon v-model="isDrawerOpen" class="drawer-toggle" />
   </header>
 </template>
+
+<script setup lang="ts">
+import BaseIcon from "@/components/ui/BaseIcon.vue";
+import HamburgerIcon from "@/components/ui/HamburgerIcon.vue";
+import ThemeToggle from "@/components/ui/ThemeToggle.vue";
+import { useAppConfig } from "@/composables/useAppConfig";
+
+const { isDrawerOpen } = useAppConfig();
+
+const links = [
+  { title: "Pricing", route: { name: "about" } },
+  { title: "Learn", route: { name: "about" } },
+  { title: "Community", route: { name: "about" } },
+];
+</script>
 
 <style scoped>
 .header {

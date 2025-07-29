@@ -1,3 +1,7 @@
+<template>
+  <AppLayout />
+</template>
+
 <script setup lang="ts">
 import AppLayout from "./layouts/MainLayout.vue";
 import { useScreenWidth } from "@/composables/useScreenWidth";
@@ -12,10 +16,6 @@ useScreenWidth({
 
 useSplashScreen();
 </script>
-
-<template>
-  <AppLayout />
-</template>
 
 <style>
 </style>

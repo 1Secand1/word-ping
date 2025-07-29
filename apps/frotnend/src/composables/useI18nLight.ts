@@ -31,8 +31,8 @@ export function useI18n() {
   async function initI18n() {
     const code
       = localStorage.getItem("vue-webapp_lang")
-      || import.meta.env.VITE_APP_DEFAULT_LOCALE
-      || "en";
+        || import.meta.env.VITE_APP_DEFAULT_LOCALE
+        || "en";
       // || window.navigator.language.substring(0, 2);
     setLocale(code);
   }

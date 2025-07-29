@@ -2,7 +2,7 @@
   "description": "Acme Corporation webapp",
   "dir": "auto",
   "display": "standalone",
-  "name": "Acme Inc.",
+  "name": "Word ping",
   "orientation": "any",
   "scope": "/",
   "short_name": "Acme",
@@ -14,19 +14,19 @@
   ],
   "icons": [
     {
-      "src": "/assets/images/logo-512.png",
+      "src": "/assets/images/logo.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/images/logo-48.png",
+      "src": "/assets/images/logo.png",
       "type": "image/png",
       "sizes": "48x48",
       "purpose": "maskable"
     },
     {
-      "src": "/assets/images/logo-128.png",
+      "src": "/assets/images/logo.png",
       "type": "image/png",
       "sizes": "128x128",
       "purpose": "maskable"

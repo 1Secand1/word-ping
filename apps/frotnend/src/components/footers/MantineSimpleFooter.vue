@@ -1,21 +1,3 @@
-<script setup lang="ts">
-import BaseIcon from "@/components/ui/BaseIcon.vue";
-
-const links = [
-  { title: "Contact", route: { name: "contacts" } },
-  { title: "Privacy", route: { name: "about" } },
-  { title: "Blog", route: { name: "about" } },
-  { title: "Store", route: { name: "about" } },
-  { title: "Careers", route: { name: "about" } },
-];
-
-const socials = [
-  { name: "twitter", url: "https://twitter.com/acme" },
-  { name: "youtube", url: "https://youtube.com/acme" },
-  { name: "instagram", url: "https://instagram.com/acme" },
-];
-</script>
-
 <template>
   <footer class="footer">
     <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 623 163" class="logo">
@@ -48,7 +30,7 @@ const socials = [
     <div class="logo">
       <BaseIcon size="30" name="logo" class="icon" />
       <div class="title">
-        Acme Inc.
+        Word ping
       </div>
     </div>
     <div class="links">
@@ -65,6 +47,23 @@ const socials = [
     </div>
   </footer>
 </template>
+
+<script setup lang="ts">
+import BaseIcon from "@/components/ui/BaseIcon.vue";
+
+const links = [
+  { title: "Privacy", route: { name: "about" } },
+  { title: "Blog", route: { name: "about" } },
+  { title: "Store", route: { name: "about" } },
+  { title: "Careers", route: { name: "about" } },
+];
+
+const socials = [
+  { name: "twitter", url: "https://twitter.com/acme" },
+  { name: "youtube", url: "https://youtube.com/acme" },
+  { name: "instagram", url: "https://instagram.com/acme" },
+];
+</script>
 
 <style scoped>
 .footer {
