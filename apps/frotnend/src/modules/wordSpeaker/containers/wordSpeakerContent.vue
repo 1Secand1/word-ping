@@ -54,6 +54,11 @@ async function switchPairWord() {
   await speakWord(currentPairWord.value.source, "en-US");
   await speakWord(currentPairWord.value.translation, "ru-RU");
 
+  if (currentPairWordIndex.value >= vocabulary.length - 1) {
+    currentPairWordIndex.value = 0;
+    return;
+  }
+
   currentPairWordIndex.value++;
 }
 
