@@ -20,7 +20,6 @@
 <style scoped>
 .content-pane {
   width: 100%;
-  padding: 1em 2em;
 }
 .v-enter-active,
 .v-leave-active {

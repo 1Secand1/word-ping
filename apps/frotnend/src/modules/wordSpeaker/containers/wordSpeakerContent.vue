@@ -11,7 +11,7 @@
         </button>
       </div>
     </div>
-    <ul class="word-list">
+    <ul class="word-list scroll-container">
       <li>
         <span>RU</span>
         <span>ENG</span>
@@ -96,7 +96,6 @@ async function toggler() {
 
 .main{
   display: flex;
-  height: 100%;
 }
 
 .word-list {
@@ -117,6 +116,12 @@ async function toggler() {
       width: 50%;
     }
   }
+}
+
+.scroll-container {
+  overflow-y: auto;
+  height: 100%;
+  max-height: 75svh;
 }
 
 button{
