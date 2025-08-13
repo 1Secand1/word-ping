@@ -4,6 +4,8 @@
       <div class="">
         <p>  Слово на англиском: {{ currentPairWord.source }}</p>
         <p> Перевод: {{ currentPairWord.translation }}</p>
+        <p> Предложение: {{ currentPairWord.example }}</p>
+
         <button @click="toggler">
           {{ switchPairWordIntervalId ? 'Остоновить' : 'Запустить' }}
         </button>
@@ -27,39 +29,32 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-
-const vocabulary = [
-  { source: "shy", translation: "застенчивый" },
-  { source: "function", translation: "функция" },
-  { source: "value", translation: "значение" },
-  { source: "loop", translation: "цикл" },
-  { source: "array", translation: "массив" },
-  { source: "object", translation: "объект" },
-  { source: "string", translation: "строка" },
-  { source: "number", translation: "число" },
-  { source: "if", translation: "если" },
-  { source: "else", translation: "иначе" },
-  { source: "return", translation: "возврат" },
-  { source: "event", translation: "событие" },
-  { source: "handler", translation: "обработчик" },
-];
+import { vocabulary } from "../helpers/vocabulary";
 
 const currentPairWordIndex = ref(0);
 const currentPairWord = computed(() => vocabulary[currentPairWordIndex.value]);
 const switchPairWordIntervalId = ref<number | null>(null);
 
+const firstTray = ref(true);
+
 async function switchPairWord() {
+  if (!firstTray.value) {
+    currentPairWordIndex.value++;
+  }
+
   console.log("switchPairWord:", currentPairWord.value.source, ",", currentPairWord.value.translation, currentPairWordIndex.value);
 
   await speakWord(currentPairWord.value.source, "en-US");
-  await speakWord(currentPairWord.value.translation, "ru-RU");
+  // await speakWord(currentPairWord.value.translation, "ru-RU");
+  await speakWord(currentPairWord.value.example, "en-US");
 
   if (currentPairWordIndex.value >= vocabulary.length - 1) {
     currentPairWordIndex.value = 0;
-    return;
   }
 
-  currentPairWordIndex.value++;
+  if (firstTray.value) {
+    firstTray.value = false;
+  }
 }
 
 function speakWord(word: string, lang: "en-US" | "ru-RU" = "en-US") {
