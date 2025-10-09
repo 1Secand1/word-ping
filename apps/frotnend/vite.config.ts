@@ -7,7 +7,7 @@ import { htmlInjectionConfig } from "./src/utils/injections/injection-config";
 // import { URL, fileURLToPath } from "node:url";
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/vue-webapp/",
+  base: "/word-ping/",
   build: {
     target: "esnext",
   },
