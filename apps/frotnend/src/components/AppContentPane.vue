@@ -1,10 +1,7 @@
 <template>
   <main class="content-pane">
-    <!-- <Transition>
-      <router-view />
-    </Transition> -->
     <router-view v-slot="{ Component }">
-      <Transition>
+      <Transition name="fade" mode="out-in">
         <component :is="Component" />
       </Transition>
     </router-view>
@@ -21,13 +18,15 @@
 .content-pane {
   width: 100%;
 }
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
+
+/* Простое исчезновение и появление */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
 }
 
-.v-enter-from,
-.v-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 </style>
