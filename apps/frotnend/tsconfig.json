@@ -8,10 +8,10 @@
     "paths": { "@/*": ["./src/*"] },
     "resolveJsonModule": true,
     "typeRoots": ["./types"],
+    "types": ["element-plus/global"],
     "allowJs": true,
     "outDir": "./dist",
     "esModuleInterop": true
-    // "types": ["node", "vite/client"]
   },
   "exclude": [
     "./dist"
