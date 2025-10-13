@@ -18,5 +18,6 @@ export default antfu({
     "vue/block-order": ["error", {
       order: ["template", "script", "style"],
     }],
+    "vue/valid-template-root": "off",
   },
 });
