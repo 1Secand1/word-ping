@@ -1,4 +1,5 @@
 import { createApp } from "vue";
+import { createPinia } from "pinia";
 
 // import "./assets/styles/vars.css";
 // import "./styles/base.css";
@@ -16,6 +17,9 @@ import { useI18n } from "@/composables/useI18nLight";
 const { initI18n } = useI18n();
 
 const app = createApp(App);
+const pinia = createPinia();
+
+app.use(pinia);
 app.use(router);
 loadIcons();
 initAppearance();
