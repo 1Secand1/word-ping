@@ -2,8 +2,8 @@
   <main class="main">
     <div class="qwe">
       <div class="">
-        <p>  Слово на англиском: {{ currentPairWord.source }}</p>
-        <p> Перевод: {{ currentPairWord.translation }}</p>
+        <p>  Слово на англиском: {{ currentPairWord.translation }}</p>
+        <p> Перевод: {{ currentPairWord.word }}</p>
         <p> Предложение: {{ currentPairWord.example }}</p>
 
         <button @click="toggler">
@@ -17,10 +17,10 @@
         <span>ENG</span>
       </li>
       <li
-        v-for="{ source, translation } in vocabulary"
-        :key="`${source}-${translation}`"
+        v-for="{ word, translation } in dictionary"
+        :key="`${word}-${translation}`"
       >
-        <span>{{ source }}</span>
+        <span>{{ word }}</span>
         <span>{{ translation }}</span>
       </li>
     </ul>
@@ -29,10 +29,15 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { vocabulary } from "../helpers/vocabulary";
+import { storeToRefs } from "pinia";
+import { useDictionaryStor } from "@/modules/vocabularyManager/stors/useDictionaryStor";
+
+const dictionaryStor = useDictionaryStor();
+
+const { dictionary } = storeToRefs(dictionaryStor);
 
 const currentPairWordIndex = ref(0);
-const currentPairWord = computed(() => vocabulary[currentPairWordIndex.value]);
+const currentPairWord = computed(() => dictionary.value[currentPairWordIndex.value]);
 const switchPairWordIntervalId = ref<number | null>(null);
 
 const firstTray = ref(true);
@@ -42,13 +47,13 @@ async function switchPairWord() {
     currentPairWordIndex.value++;
   }
 
-  console.log("switchPairWord:", currentPairWord.value.source, ",", currentPairWord.value.translation, currentPairWordIndex.value);
+  console.log("switchPairWord:", currentPairWord.value.word, ",", currentPairWord.value.translation, currentPairWordIndex.value);
 
-  await speakWord(currentPairWord.value.source, "en-US");
-  // await speakWord(currentPairWord.value.translation, "ru-RU");
+  await speakWord(currentPairWord.value.translation, "en-US");
+  await speakWord(currentPairWord.value.word, "ru-RU");
   await speakWord(currentPairWord.value.example, "en-US");
 
-  if (currentPairWordIndex.value >= vocabulary.length - 1) {
+  if (currentPairWordIndex.value >= dictionary.value.length - 1) {
     currentPairWordIndex.value = 0;
   }
 
