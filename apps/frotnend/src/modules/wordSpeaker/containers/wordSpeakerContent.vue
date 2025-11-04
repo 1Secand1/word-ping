@@ -17,8 +17,9 @@
         <span>ENG</span>
       </li>
       <li
-        v-for="{ word, translation } in dictionary"
+        v-for="{ word, translation, id } in dictionary"
         :key="`${word}-${translation}`"
+        :class="{ active: currentPairWord.id === id }"
       >
         <span>{{ word }}</span>
         <span>{{ translation }}</span>
@@ -111,9 +112,6 @@ async function toggler() {
   li {
     padding: .4rem;
     display: flex;
-    &:nth-child(even) {
-      background-color: var(--vwa-c-bg-alt);
-    }
     &.dimmed {
       opacity: 0.5;
     }
@@ -121,6 +119,10 @@ async function toggler() {
       width: 50%;
     }
   }
+}
+
+.active{
+  background: #c4c4c488;
 }
 
 .scroll-container {
