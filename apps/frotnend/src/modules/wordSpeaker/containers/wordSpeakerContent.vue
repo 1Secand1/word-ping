@@ -41,26 +41,26 @@ const currentPairWordIndex = ref(0);
 const currentPairWord = computed(() => dictionary.value[currentPairWordIndex.value]);
 const switchPairWordIntervalId = ref<number | null>(null);
 
-const firstTray = ref(true);
+function switchPairWord() {
+  speakWords();
 
-async function switchPairWord() {
-  if (!firstTray.value) {
+  return async () => {
     currentPairWordIndex.value++;
-  }
 
+    if (currentPairWordIndex.value > dictionary.value.length - 1) {
+      currentPairWordIndex.value = 0;
+    }
+
+    await speakWords();
+  };
+}
+
+async function speakWords() {
   console.log("switchPairWord:", currentPairWord.value.word, ",", currentPairWord.value.translation, currentPairWordIndex.value);
 
   await speakWord(currentPairWord.value.translation, "en-US");
   await speakWord(currentPairWord.value.word, "ru-RU");
   await speakWord(currentPairWord.value.example, "en-US");
-
-  if (currentPairWordIndex.value >= dictionary.value.length - 1) {
-    currentPairWordIndex.value = 0;
-  }
-
-  if (firstTray.value) {
-    firstTray.value = false;
-  }
 }
 
 function speakWord(word: string, lang: "en-US" | "ru-RU" = "en-US") {
@@ -87,9 +87,7 @@ async function toggler() {
     return;
   }
 
-  switchPairWord();
-
-  switchPairWordIntervalId.value = setInterval(switchPairWord, 60 * 1000);
+  switchPairWordIntervalId.value = setInterval(switchPairWord(), 10 * 1000);
 }
 </script>
 
