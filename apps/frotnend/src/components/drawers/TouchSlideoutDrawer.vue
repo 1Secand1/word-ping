@@ -224,7 +224,7 @@ onUnmounted(() => {
 
 <style scoped>
 .navigation-drawer {
-  z-index: 9999;
+  z-index: 1000;
   position: fixed;
   /* // top: 0; */
   left: 0;

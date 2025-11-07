@@ -1,11 +1,3 @@
-<script setup lang="ts">
-import HamburgerIcon from "@/components/ui/HamburgerIcon.vue";
-import ThemeToggle from "@/components/ui/ThemeToggle.vue";
-import { useAppConfig } from "@/composables/useAppConfig";
-
-const { isDrawerOpen } = useAppConfig();
-</script>
-
 <template>
   <header class="header">
     <HamburgerIcon v-model="isDrawerOpen" class="drawer-toggle" />
@@ -15,6 +7,14 @@ const { isDrawerOpen } = useAppConfig();
     <ThemeToggle />
   </header>
 </template>
+
+<script setup lang="ts">
+import HamburgerIcon from "@/components/ui/HamburgerIcon.vue";
+import ThemeToggle from "@/components/ui/ThemeToggle.vue";
+import { useAppConfig } from "@/composables/useAppConfig";
+
+const { isDrawerOpen } = useAppConfig();
+</script>
 
 <style scoped>
 .header {
@@ -26,7 +26,7 @@ const { isDrawerOpen } = useAppConfig();
   height: 4em;
   padding: 15px 20px;
   background-color: var(--vwa-c-bg);
-  z-index: 3;
+  z-index: 2;
   .drawer-toggle {
     .notebook &, .desktop & {
       display: none;

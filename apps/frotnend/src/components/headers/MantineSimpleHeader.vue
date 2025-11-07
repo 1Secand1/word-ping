@@ -42,7 +42,7 @@ const links = [
   height: 4em;
   padding: 15px 20px;
   background-color: var(--vwa-c-bg);
-  z-index: 3;
+  z-index: 2;
   justify-content: space-between;
   border-bottom: 1px solid var(--vwa-c-divider);
   /* // margin-bottom: 1em; */
