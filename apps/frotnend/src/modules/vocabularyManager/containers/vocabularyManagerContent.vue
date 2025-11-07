@@ -11,15 +11,15 @@
     </el-header>
     <el-main class="container-main">
       <vocabulary-list
-        :dictionary-items="dictionary"
-        @remove="removeDictionaryItem"
+        :dictionary-items="dictionaryList"
+        @remove="removeDictionaryItem('id', $event)"
       />
     </el-main>
 
     <el-footer>
       <el-button
         class="add-new-note-btn"
-        @click="addDictionaryItem"
+        @click="addNewNote"
       >
         Добавить запись
       </el-button>
@@ -31,14 +31,24 @@
 import { storeToRefs } from "pinia";
 import vocabularyList from "../components/vocabulary-list.vue";
 import { useDictionaryStor } from "../stors/useDictionaryStor";
+import { useObjectList } from "@/composables/useObjectList";
 
 const dictionaryStor = useDictionaryStor();
 const { dictionary } = storeToRefs(dictionaryStor);
-const { addDictionaryItem, removeDictionaryItem } = dictionaryStor;
+
+const {
+  list: dictionaryList,
+  addItem: addDictionaryItem,
+  removeItem: removeDictionaryItem,
+} = useObjectList(dictionary.value);
+
+function addNewNote() {
+  addDictionaryItem({ id: Math.random(), translation: "", word: "", example: "" });
+}
 
 function seveDictionary() {
-  console.log("dictionary", dictionary.value);
-  localStorage.setItem("dictionary", JSON.stringify(dictionary.value));
+  dictionary.value = dictionaryList.value;
+  localStorage.setItem("dictionary", JSON.stringify(dictionaryList.value));
 }
 </script>
 
