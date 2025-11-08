@@ -103,6 +103,10 @@ async function toggler() {
 
   switchPairWordIntervalId.value = setInterval(switchPairWord(), 10 * 1000);
 }
+
+onMounted(() => {
+  speakWord("Добро пожаловать ))", "ru-RU");
+});
 </script>
 
 <style scoped>
