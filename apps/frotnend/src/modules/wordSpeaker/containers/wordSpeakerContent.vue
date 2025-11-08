@@ -1,7 +1,7 @@
 <template>
   <main class="main">
-    <div class="qwe">
-      <div class="">
+    <div class="centerContainer">
+      <div v-if="dictionary?.length">
         <p>  Слово на англиском: {{ currentPairWord.translation }}</p>
         <p> Перевод: {{ currentPairWord.word }}</p>
         <p> Предложение: {{ currentPairWord.example }}</p>
@@ -10,8 +10,21 @@
           {{ switchPairWordIntervalId ? 'Остоновить' : 'Запустить' }}
         </button>
       </div>
+      <div v-else>
+        <div style="margin-top: 50px;">
+          <p>
+            В вашем словаре нету запесей, заполните словарь
+          </p>
+          <el-button @click="router.push({ name: 'vocabulary-manager' })">
+            Перейти к словарю
+          </el-button>
+        </div>
+      </div>
     </div>
-    <ul class="word-list scroll-container">
+    <ul
+      v-if="dictionary?.length"
+      class="word-list scroll-container"
+    >
       <li>
         <span>RU</span>
         <span>ENG</span>
@@ -29,9 +42,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useDictionaryStor } from "@/modules/vocabularyManager/stors/useDictionaryStor";
+import { router } from "@/router";
 
 const dictionaryStor = useDictionaryStor();
 
@@ -92,7 +106,7 @@ async function toggler() {
 </script>
 
 <style scoped>
-.qwe {
+.centerContainer {
   width: 100%;
   display: grid;
   place-items: center;

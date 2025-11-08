@@ -12,6 +12,7 @@
     <el-main class="container-main">
       <vocabulary-list
         :dictionary-items="dictionaryList"
+        :disabled-remove="dictionaryList.length <= 1"
         @remove="removeDictionaryItem('id', $event)"
       />
     </el-main>
@@ -48,7 +49,9 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
+import type { NavigationGuardNext, RouteLocationNormalizedGeneric } from "vue-router";
 import { onBeforeRouteLeave } from "vue-router";
+import { onMounted } from "vue";
 import vocabularyList from "../components/vocabulary-list.vue";
 import { useDictionaryStor } from "../stors/useDictionaryStor";
 import { useObjectList } from "../externalDependency/composables/useObjectList";
@@ -69,7 +72,16 @@ const {
   open: openClosingWarningModal,
 } = useToggle();
 
-let nextRoute = null;
+let nextRoute: null | {
+  to: RouteLocationNormalizedGeneric
+  next: NavigationGuardNext
+} = null;
+
+onMounted(() => {
+  if (dictionaryList.value.length === 0) {
+    addNewNote();
+  }
+});
 
 function addNewNote() {
   addDictionaryItem({ id: Math.random(), translation: "", word: "", example: "" });
@@ -81,6 +93,14 @@ function seveDictionary() {
 }
 
 function checkChanges() {
+  if (
+    dictionaryList.value.length === 1
+    && !dictionaryList.value[0].translation
+    && !dictionaryList.value[0].word
+    && !dictionaryList.value[0]?.translation) {
+    return false;
+  }
+
   return JSON.stringify(dictionary.value) !== JSON.stringify(dictionaryList.value);
 }
 

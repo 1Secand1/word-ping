@@ -4,12 +4,17 @@
     :key="index"
     :index="index + 1"
     :dictionary-item="dictionaryItem"
+    :disabled-remove="disabledRemove"
     @remove="$emit('remove', $event)"
   />
 </template>
 
 <script setup lang="ts">
 import DictionaryCard from "./dictionary-card.vue";
+
+defineProps<{
+  disabledRemove?: boolean
+}>();
 
 defineEmits<{
   remove: [dictionaryItemId: number]

@@ -4,9 +4,9 @@ export function useObjectList<T extends Record<string, any>>(defaultList: T[] = 
   const list = ref([]) as Ref<T[]>;
 
   if (isProxy(defaultList)) {
-    list.value = structuredClone(toRaw(defaultList));
+    list.value = structuredClone(toRaw(defaultList || []));
   } else {
-    list.value = structuredClone(defaultList);
+    list.value = structuredClone(defaultList || []);
   }
 
   function addItem(item: T) {

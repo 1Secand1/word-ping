@@ -20,7 +20,6 @@ declare module 'vue' {
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
-    ElProgress: typeof import('element-plus/es')['ElProgress']
     HamburgerIcon: typeof import('./src/components/ui/HamburgerIcon.vue')['default']
     MantineSimpleFooter: typeof import('./src/components/footers/MantineSimpleFooter.vue')['default']
     MantineSimpleHeader: typeof import('./src/components/headers/MantineSimpleHeader.vue')['default']

@@ -7,6 +7,7 @@
           type="primary"
           size="small"
           :icon="Delete"
+          :disabled="disabledRemove"
           circle
           @click="$emit('remove', dictionaryItem.id)"
         />
@@ -38,6 +39,7 @@ import type { IDictionaryItem } from "../types";
 defineProps<{
   dictionaryItem: IDictionaryItem
   index: number
+  disabledRemove?: boolean
 }>();
 
 defineEmits<{
