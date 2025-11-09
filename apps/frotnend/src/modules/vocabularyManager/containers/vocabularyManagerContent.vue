@@ -93,15 +93,22 @@ function seveDictionary() {
 }
 
 function checkChanges() {
-  if (
-    dictionaryList.value.length === 1
-    && !dictionaryList.value[0].translation
-    && !dictionaryList.value[0].word
-    && !dictionaryList.value[0]?.translation) {
+  if (isFirstEntryEmpty()) {
     return false;
   }
 
   return JSON.stringify(dictionary.value) !== JSON.stringify(dictionaryList.value);
+}
+
+function isFirstEntryEmpty() {
+  const { translation, word, example } = dictionaryList.value[0];
+  return (
+    !dictionary.value?.length
+    && dictionaryList.value?.length === 1
+    && !translation
+    && !word
+    && !example
+  );
 }
 
 function confirmLeave() {
@@ -131,11 +138,6 @@ onBeforeRouteLeave((to, from, next) => {
 </script>
 
 <style scoped>
-.container-header {
-  display: flex;
-  justify-content: end;
-}
-
 .container-main {
   padding-top: 0;
 }
