@@ -26,16 +26,16 @@
       class="word-list scroll-container"
     >
       <li>
-        <span>RU</span>
         <span>ENG</span>
+        <span>RU</span>
       </li>
       <li
         v-for="{ word, translation, id } in dictionary"
         :key="`${word}-${translation}`"
         :class="{ active: currentPairWord.id === id }"
       >
-        <span>{{ word }}</span>
         <span>{{ translation }}</span>
+        <span>{{ word }}</span>
       </li>
     </ul>
   </main>
