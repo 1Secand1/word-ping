@@ -15,11 +15,6 @@
 </script>
 
 <style scoped>
-.content-pane {
-  width: 100%;
-  padding:0 16px;
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;

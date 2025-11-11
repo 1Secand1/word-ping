@@ -180,3 +180,8 @@ select {
   /* // padding: 2em 2em 0;
   // text-align: center; */
 }
+
+.content-pane {
+  width: 100%;
+  padding: 0 16px;
+}

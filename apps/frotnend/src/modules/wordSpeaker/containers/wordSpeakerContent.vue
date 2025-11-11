@@ -1,5 +1,5 @@
 <template>
-  <main class="main">
+  <div class="main">
     <div class="centerContainer">
       <div v-if="dictionary?.length">
         <p>  Слово на англиском: {{ currentPairWord.translation }}</p>
@@ -38,11 +38,11 @@
         <span>{{ word }}</span>
       </li>
     </ul>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useDictionaryStor } from "@/modules/vocabularyManager/stors/useDictionaryStor";
 import { router } from "@/router";
@@ -70,8 +70,6 @@ function switchPairWord() {
 }
 
 async function speakWords() {
-  console.log("switchPairWord:", currentPairWord.value.word, ",", currentPairWord.value.translation, currentPairWordIndex.value);
-
   await speakWord(currentPairWord.value.translation, "en-US");
   await speakWord(currentPairWord.value.word, "ru-RU");
   await speakWord(currentPairWord.value.example, "en-US");
@@ -95,6 +93,8 @@ function speakWord(word: string, lang: "en-US" | "ru-RU" = "en-US") {
 }
 
 async function toggler() {
+  speechSynthesis.cancel();
+
   if (switchPairWordIntervalId.value) {
     clearInterval(switchPairWordIntervalId.value);
     switchPairWordIntervalId.value = null;
