@@ -40,8 +40,8 @@ function onLinkClick(event, navigate) {
 
 const links = [
   { name: "wordSpeaker", label: "Home", icon: "home" },
-  { name: "about", label: "About", icon: "about" },
   { name: "vocabulary-manager", label: "Vocabulary", icon: "about" },
+  { name: "about", label: "About", icon: "about" },
 ];
 const footerLinks = [
   { name: "wordSpeaker", label: "Logout", icon: "logout" },
